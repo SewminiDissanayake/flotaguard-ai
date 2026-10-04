@@ -1,0 +1,86 @@
+{
+  "regression": [
+    {
+      "feature": "silica_current",
+      "importance": 0.4847657084465027
+    },
+    {
+      "feature": "silica_lag_1h",
+      "importance": 0.06289829313755035
+    },
+    {
+      "feature": "silica_lag_2h",
+      "importance": 0.027406591922044754
+    },
+    {
+      "feature": "Ore Pulp Density",
+      "importance": 0.021235080435872078
+    },
+    {
+      "feature": "Flotation Column 04 Air Flow",
+      "importance": 0.020440250635147095
+    },
+    {
+      "feature": "silica_lag_4h",
+      "importance": 0.0203939750790596
+    },
+    {
+      "feature": "Flotation Column 03 Level",
+      "importance": 0.02015768550336361
+    },
+    {
+      "feature": "silica_lag_5h",
+      "importance": 0.0198682751506567
+    },
+    {
+      "feature": "Flotation Column 04 Level",
+      "importance": 0.019858326762914658
+    },
+    {
+      "feature": "Ore Pulp pH",
+      "importance": 0.019740493968129158
+    }
+  ],
+  "alert": [
+    {
+      "feature": "silica_current",
+      "importance": 0.29736825823783875
+    },
+    {
+      "feature": "silica_lag_1h",
+      "importance": 0.050019726157188416
+    },
+    {
+      "feature": "Ore Pulp Density",
+      "importance": 0.03557362034916878
+    },
+    {
+      "feature": "Flotation Column 05 Level",
+      "importance": 0.03205443173646927
+    },
+    {
+      "feature": "Flotation Column 03 Air Flow",
+      "importance": 0.031122172251343727
+    },
+    {
+      "feature": "Flotation Column 06 Air Flow",
+      "importance": 0.02986511029303074
+    },
+    {
+      "feature": "Flotation Column 04 Air Flow",
+      "importance": 0.028097769245505333
+    },
+    {
+      "feature": "Flotation Column 01 Air Flow",
+      "importance": 0.027347521856427193
+    },
+    {
+      "feature": "silica_lag_2h",
+      "importance": 0.02705865167081356
+    },
+    {
+      "feature": "silica_lag_3h",
+      "importance": 0.026961402967572212
+    }
+  ]
+}

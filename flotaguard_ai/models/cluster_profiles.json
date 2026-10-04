@@ -1,0 +1,26 @@
+{
+  "0": {
+    "label": "Higher-Silica Pattern",
+    "mean_silica": 2.657,
+    "median_silica": 2.4,
+    "training_hours": 322
+  },
+  "1": {
+    "label": "Lower-Silica Pattern",
+    "mean_silica": 1.913,
+    "median_silica": 1.66,
+    "training_hours": 984
+  },
+  "2": {
+    "label": "Elevated-Silica Pattern",
+    "mean_silica": 2.55,
+    "median_silica": 2.24,
+    "training_hours": 606
+  },
+  "3": {
+    "label": "Moderate-Silica Pattern",
+    "mean_silica": 2.472,
+    "median_silica": 2.08,
+    "training_hours": 1360
+  }
+}

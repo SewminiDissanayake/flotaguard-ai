@@ -1,0 +1,6 @@
+{
+  "quality_threshold_silica_pct": 3.5,
+  "probability_threshold": 0.4200000000000001,
+  "forecast_horizon": "1 hour",
+  "input_definition": "Current-hour mean process measurements + latest 6 hourly silica quality results"
+}

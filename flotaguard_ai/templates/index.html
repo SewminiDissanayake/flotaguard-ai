@@ -1,0 +1,327 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#06110f">
+<title>FlotaGuard AI // Industrial Predictive Intelligence</title>
+<style>
+:root{
+  --bg:#06110f;--bg2:#081815;--panel:#0b1b17;--panel2:#0e221d;--panel3:#102821;
+  --line:#1c3a31;--line2:#2b5144;--text:#eff8f4;--muted:#90aaa0;--muted2:#6f8f84;
+  --green:#67e8a5;--green2:#35c986;--cyan:#68d8df;--amber:#f4c96b;--red:#ff7d7d;--blue:#75a7ff;
+  --shadow:0 20px 65px rgba(0,0,0,.27);--radius:22px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;color:var(--text);font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;background:
+ radial-gradient(circle at 10% -5%,rgba(54,201,134,.13),transparent 30%),
+ radial-gradient(circle at 92% 8%,rgba(104,216,223,.08),transparent 28%),var(--bg);min-height:100vh}
+body:before{content:"";position:fixed;inset:0;pointer-events:none;background-image:linear-gradient(rgba(255,255,255,.018) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.018) 1px,transparent 1px);background-size:38px 38px;mask-image:linear-gradient(to bottom,black,transparent 72%)}
+a{color:inherit;text-decoration:none}
+button,input{font:inherit}
+.shell{max-width:1480px;margin:0 auto;padding:0 26px 34px}
+.topbar{position:sticky;top:0;z-index:40;backdrop-filter:blur(18px);background:rgba(6,17,15,.82);border-bottom:1px solid rgba(43,81,68,.45);margin:0 -26px;padding:0 26px}
+.nav{max-width:1480px;margin:auto;height:72px;display:flex;align-items:center;justify-content:space-between;gap:18px}
+.brand{display:flex;align-items:center;gap:11px;font-weight:800;letter-spacing:-.02em}
+.logo{width:38px;height:38px;border-radius:12px;background:linear-gradient(145deg,var(--green),#1d7655);display:grid;place-items:center;color:#042017;font-weight:950;box-shadow:0 0 32px rgba(103,232,165,.16)}
+.logo:before{content:"F"}
+.navlinks{display:flex;gap:22px;color:#b8cec6;font-size:13px}
+.navlinks a:hover{color:var(--green)}
+.live{display:flex;align-items:center;gap:8px;border:1px solid var(--line);background:#0a1915;border-radius:999px;padding:8px 12px;font-size:12px;color:#cbe1d8}.dot{width:8px;height:8px;border-radius:50%;background:var(--green);box-shadow:0 0 0 5px rgba(103,232,165,.08);animation:pulse 1.8s infinite}@keyframes pulse{50%{box-shadow:0 0 0 8px rgba(103,232,165,0)}}
+.hero{padding:54px 0 30px;display:grid;grid-template-columns:minmax(0,1.3fr) minmax(330px,.7fr);gap:24px;align-items:stretch}
+.hero-main,.hero-side,.panel{background:linear-gradient(145deg,rgba(14,34,29,.92),rgba(8,23,19,.94));border:1px solid var(--line);box-shadow:var(--shadow)}
+.hero-main{border-radius:28px;padding:35px;position:relative;overflow:hidden}.hero-main:after{content:"";position:absolute;width:360px;height:360px;border-radius:50%;right:-140px;top:-200px;background:radial-gradient(circle,rgba(103,232,165,.2),transparent 67%);pointer-events:none}
+.kicker{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--green);font-weight:800}.hero h1{font-size:clamp(38px,5vw,67px);line-height:.98;letter-spacing:-.055em;margin:12px 0 16px;max-width:820px}.hero h1 span{color:var(--green)}
+.hero-copy{max-width:810px;color:#a9c0b7;line-height:1.65;font-size:15px}.pillrow{display:flex;gap:9px;flex-wrap:wrap;margin-top:24px}.pill{border:1px solid #25483d;background:#091b16;padding:8px 11px;border-radius:999px;font-size:11px;color:#c1d5ce}
+.hero-side{border-radius:28px;padding:26px;display:flex;flex-direction:column;justify-content:space-between}.system-label{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.12em}.health{display:flex;align-items:end;justify-content:space-between;margin:14px 0}.health strong{font-size:48px;line-height:1;letter-spacing:-.05em}.health strong span{font-size:18px;color:var(--green)}
+.health-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}.mini-kpi{background:#091713;border:1px solid #19362e;border-radius:15px;padding:13px}.mini-kpi span{display:block;font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.08em}.mini-kpi b{display:block;margin-top:5px;font-size:17px}.hero-foot{font-size:11px;color:var(--muted2);line-height:1.55;margin-top:14px}
+.sectionhead{display:flex;justify-content:space-between;gap:18px;align-items:end;margin:26px 2px 13px}.sectionhead h2{font-size:23px;margin:0;letter-spacing:-.03em}.sectionhead p{margin:4px 0 0;color:var(--muted);font-size:12px}.sectiontag{font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--green)}
+.scenarios{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.scenario{background:#0a1915;border:1px solid var(--line);border-radius:17px;padding:17px;cursor:pointer;transition:.2s;text-align:left;color:var(--text)}.scenario:hover,.scenario.active{transform:translateY(-2px);border-color:#3b745f;background:#0e241d}.scenario.active{box-shadow:0 0 0 1px rgba(103,232,165,.18) inset}.scenario-top{display:flex;align-items:center;justify-content:space-between}.scenario-name{font-weight:760}.scenario-badge{font-size:10px;padding:5px 8px;border-radius:999px;background:#143127;color:#9ce5bd}.scenario[data-name="Watch"] .scenario-badge{color:#f5d98e;background:#302817}.scenario[data-name="High Risk"] .scenario-badge{color:#ffb4b4;background:#321919}.scenario p{font-size:11px;color:var(--muted);line-height:1.45;margin:8px 0 0}
+.dashboard{display:grid;grid-template-columns:minmax(0,1.45fr) minmax(360px,.55fr);gap:14px}.panel{border-radius:var(--radius);padding:20px}.panel-title{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;margin-bottom:16px}.panel-title h3{margin:0;font-size:16px;letter-spacing:-.015em}.panel-title p{margin:5px 0 0;color:var(--muted);font-size:11px;line-height:1.5}.panel-chip{font-size:10px;color:#b9d3ca;border:1px solid var(--line);padding:6px 8px;border-radius:999px;white-space:nowrap}
+.kpis{display:grid;grid-template-columns:1.25fr .9fr .9fr;gap:10px}.kpi{position:relative;overflow:hidden;background:#091713;border:1px solid #1b3930;border-radius:17px;padding:16px;min-height:126px}.kpi .lab{font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.09em}.kpi .val{font-size:34px;font-weight:850;margin-top:9px;letter-spacing:-.045em}.kpi .sub{font-size:10px;color:var(--muted);margin-top:5px;line-height:1.4}.risk-stable{color:var(--green)}.risk-watch{color:var(--amber)}.risk-high{color:var(--red)}
+.risk-layout{display:grid;grid-template-columns:145px 1fr;gap:18px;align-items:center}.ring{--p:0;--ring:var(--green);width:132px;height:132px;border-radius:50%;background:conic-gradient(var(--ring) calc(var(--p)*1%),#18342b 0);position:relative;display:grid;place-items:center;transition:.45s}.ring:after{content:"";position:absolute;inset:13px;border-radius:50%;background:#091713;border:1px solid #214138}.ring .inside{position:relative;z-index:2;text-align:center}.ring .inside b{display:block;font-size:26px}.ring .inside span{font-size:9px;color:var(--muted);text-transform:uppercase;letter-spacing:.08em}.risk-copy h4{margin:0 0 7px;font-size:19px}.risk-copy p{margin:0;color:var(--muted);font-size:11px;line-height:1.55}.meter{height:7px;background:#18342b;border-radius:999px;margin-top:13px;overflow:hidden}.meter>i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--green),var(--amber),var(--red));transition:.4s}
+.chart-panel{margin-top:12px}.chart-box{position:relative;background:#081512;border:1px solid #18372d;border-radius:17px;padding:12px;min-height:295px;overflow:hidden}.chart-svg{width:100%;height:265px;display:block}.chart-title-row{display:flex;justify-content:space-between;gap:10px;align-items:center;margin-bottom:5px}.legend{display:flex;gap:12px;flex-wrap:wrap;color:var(--muted);font-size:10px}.legend span:before{content:"";display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:5px;background:var(--green)}.legend .lg-threshold:before{background:var(--amber)}.legend .lg-forecast:before{background:var(--cyan)}
+.insightbar{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:12px}.insight{background:#091713;border:1px solid #1a3930;border-radius:15px;padding:13px}.insight span{font-size:9px;color:var(--muted);text-transform:uppercase;letter-spacing:.08em}.insight b{display:block;font-size:13px;margin-top:5px}.insight small{display:block;color:var(--muted);font-size:10px;margin-top:4px;line-height:1.45}
+.side-stack{display:grid;gap:14px}.pattern-head{display:flex;align-items:center;gap:10px;margin-bottom:12px}.pattern-icon{width:42px;height:42px;border-radius:12px;background:linear-gradient(145deg,#17372d,#0c201a);display:grid;place-items:center;color:var(--green);font-weight:900}.pattern-head b{display:block}.pattern-head span{font-size:10px;color:var(--muted)}.cluster-list{display:grid;gap:8px}.cluster-row{display:grid;grid-template-columns:1.4fr 1fr 42px;gap:8px;align-items:center;font-size:10px;color:var(--muted)}.track{height:7px;background:#17332a;border-radius:999px;overflow:hidden}.fill{height:100%;background:linear-gradient(90deg,var(--cyan),var(--green));border-radius:999px}.cluster-row.active{color:#e6f4ee}.cluster-row.active .fill{background:linear-gradient(90deg,var(--green),#9bf3c6);box-shadow:0 0 14px rgba(103,232,165,.16)}
+.drivers{display:grid;gap:9px}.driver{display:grid;grid-template-columns:135px 1fr 44px;gap:8px;align-items:center;font-size:10px;color:var(--muted)}.driver strong{font-weight:600;color:#c9dcd5;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.driver .fill{background:linear-gradient(90deg,var(--blue),var(--cyan))}
+.validation-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}.score{background:#091713;border:1px solid #1a3930;border-radius:15px;padding:14px}.score span{font-size:9px;color:var(--muted);text-transform:uppercase;letter-spacing:.08em}.score b{display:block;margin-top:6px;font-size:22px}.score small{font-size:9px;color:var(--muted)}
+.studio{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:14px}.advanced-card{background:#0a1915;border:1px solid var(--line);border-radius:18px;padding:18px}.advanced-card h3{margin:0;font-size:15px}.advanced-card>p{color:var(--muted);font-size:11px;line-height:1.5}.history-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:9px}.fields{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}.group-title{font-size:10px;color:var(--green);text-transform:uppercase;letter-spacing:.1em;margin:16px 0 8px}.field{background:#081512;border:1px solid #17372d;border-radius:12px;padding:10px}.field label{display:block;color:var(--muted);font-size:9px;line-height:1.25;min-height:22px}.field input{width:100%;border:0;border-top:1px solid #17372d;margin-top:6px;padding:7px 0 0;background:transparent;color:#eaf5f0;outline:none;font-size:12px}.field input:focus{border-color:var(--green)}
+.actionbar{display:flex;gap:10px;align-items:center;justify-content:space-between;margin-top:16px;border-top:1px solid var(--line);padding-top:14px}.btn{border:1px solid var(--line2);background:#10291f;color:var(--text);padding:10px 14px;border-radius:11px;cursor:pointer;font-weight:700;font-size:11px;transition:.2s}.btn:hover{transform:translateY(-1px);border-color:var(--green)}.btn.primary{background:linear-gradient(135deg,var(--green),#49d695);color:#052017;border-color:transparent;box-shadow:0 10px 30px rgba(103,232,165,.12)}.status{font-size:10px;color:var(--muted)}
+.notice{border:1px solid #23473b;background:#0b211b;border-radius:14px;padding:12px 13px;color:#bcd2c9;font-size:10px;line-height:1.55}.notice.warn{border-color:#725d2e;background:#231f12;color:#efd995}.notice.err{border-color:#663030;background:#271414;color:#ffc3c3}.demo-outcome{margin-top:10px;color:#a8c1b8;font-size:10px;line-height:1.5}
+.footer{padding:30px 0 10px;display:flex;justify-content:space-between;gap:15px;color:#628276;font-size:10px;border-top:1px solid rgba(28,58,49,.45);margin-top:28px}
+.hidden{display:none!important}
+@media(max-width:1120px){.hero{grid-template-columns:1fr}.dashboard,.studio{grid-template-columns:1fr}.side-stack{grid-template-columns:1fr 1fr}.kpis{grid-template-columns:1fr 1fr}.validation-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:760px){.shell{padding:0 15px 25px}.topbar{margin:0 -15px;padding:0 15px}.navlinks{display:none}.hero{padding-top:28px}.hero-main,.hero-side{padding:22px}.scenarios,.side-stack,.kpis,.history-grid,.fields{grid-template-columns:1fr}.risk-layout{grid-template-columns:115px 1fr}.ring{width:108px;height:108px}.validation-grid{grid-template-columns:1fr 1fr}.footer{display:block;line-height:1.8}.hero h1{font-size:42px}.chart-svg{height:235px}}
+
+/* ===== INDUSTRIAL WEBSITE UPGRADE ===== */
+.hero-v2{padding:34px 0 18px;display:grid;grid-template-columns:minmax(0,.9fr) minmax(520px,1.1fr);gap:16px;min-height:590px}
+.hero-copy-block{border:1px solid var(--line);border-radius:30px;padding:48px 42px;display:flex;flex-direction:column;justify-content:center;background:linear-gradient(155deg,#0d211b 0%,#081512 62%,#07110f 100%);position:relative;overflow:hidden;box-shadow:var(--shadow)}
+.hero-copy-block:before{content:"FG/01";position:absolute;right:28px;top:24px;color:#27493e;font:800 11px/1 ui-monospace,SFMono-Regular,Menlo,monospace;letter-spacing:.18em}
+.hero-copy-block:after{content:"";position:absolute;inset:auto -120px -170px auto;width:420px;height:420px;border-radius:50%;background:radial-gradient(circle,rgba(103,232,165,.15),transparent 68%)}
+.hero-overline{display:flex;gap:10px;align-items:center;color:#97baad;font-size:10px;text-transform:uppercase;letter-spacing:.18em;font-weight:800}.hero-overline i{width:28px;height:1px;background:var(--green);display:block}
+.hero-v2 h1{font-size:clamp(44px,5.2vw,76px);line-height:.94;letter-spacing:-.065em;margin:17px 0 19px;max-width:730px}.hero-v2 h1 em{font-style:normal;color:var(--green)}
+.hero-lead{font-size:16px;line-height:1.72;color:#abc1b8;max-width:680px}.hero-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:28px}.cta{padding:12px 16px;border-radius:12px;border:1px solid #2d5a4b;background:#0b1c17;color:#d9ece4;font-weight:800;font-size:12px}.cta.primary{background:var(--green);border-color:var(--green);color:#052017}.cta:hover{transform:translateY(-1px)}
+.hero-proof{display:flex;gap:18px;flex-wrap:wrap;margin-top:29px;padding-top:22px;border-top:1px solid #17342b}.proof-item b{display:block;font-size:18px}.proof-item span{font-size:9px;color:#6f8f84;text-transform:uppercase;letter-spacing:.09em}
+.hero-visual{position:relative;border:1px solid var(--line);border-radius:30px;overflow:hidden;min-height:590px;background:#0a1814;box-shadow:var(--shadow)}
+.hero-photo{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:saturate(.58) contrast(1.12) brightness(.67);transform:scale(1.015)}
+.hero-visual:after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(4,13,11,.08),rgba(4,13,11,.16)),linear-gradient(0deg,rgba(4,13,11,.84) 0%,transparent 47%,rgba(4,13,11,.25) 100%);pointer-events:none}
+.hero-grid-overlay{position:absolute;inset:0;z-index:2;opacity:.28;background-image:linear-gradient(rgba(103,232,165,.12) 1px,transparent 1px),linear-gradient(90deg,rgba(103,232,165,.12) 1px,transparent 1px);background-size:54px 54px;mask-image:linear-gradient(to bottom,black,transparent 72%)}
+.visual-top{position:absolute;z-index:4;left:22px;right:22px;top:20px;display:flex;justify-content:space-between;align-items:center}.visual-code{font:700 10px ui-monospace,SFMono-Regular,Menlo,monospace;letter-spacing:.12em;color:#d5e7df;background:rgba(5,18,14,.68);border:1px solid rgba(123,184,159,.3);padding:8px 10px;border-radius:9px;backdrop-filter:blur(10px)}
+.visual-bottom{position:absolute;z-index:4;left:22px;right:22px;bottom:22px;display:grid;grid-template-columns:1.15fr .85fr;gap:10px}.visual-card{background:rgba(5,18,14,.78);border:1px solid rgba(126,190,163,.28);backdrop-filter:blur(12px);border-radius:16px;padding:15px}.visual-card span{font-size:9px;text-transform:uppercase;letter-spacing:.11em;color:#8daaa0}.visual-card b{font-size:18px;display:block;margin-top:5px}.visual-card p{font-size:10px;color:#93ada3;line-height:1.45;margin:5px 0 0}
+.photo-credit{position:absolute;z-index:5;right:13px;bottom:6px;font-size:8px;color:rgba(218,235,228,.55)}.photo-credit a{color:inherit;text-decoration:underline}
+.plant-fallback{display:none;position:absolute;inset:0;width:100%;height:100%;background:linear-gradient(160deg,#0a1c17,#06100e)}
+.signal-strip{margin-top:4px;border:1px solid #17352c;background:#071512;border-radius:15px;padding:10px 13px;display:grid;grid-template-columns:repeat(5,1fr);gap:8px}.signal{display:flex;align-items:center;gap:8px;min-width:0}.signal i{width:7px;height:7px;border-radius:50%;background:var(--green);box-shadow:0 0 12px rgba(103,232,165,.5)}.signal span{font-size:9px;color:#728f84;text-transform:uppercase;letter-spacing:.07em}.signal b{display:block;font-size:11px;color:#c8ddd5;margin-top:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.website-section{margin-top:22px}.split-intro{display:grid;grid-template-columns:.76fr 1.24fr;gap:14px}.story-panel{border-radius:25px;padding:28px;border:1px solid var(--line);background:linear-gradient(145deg,#0d211b,#081613)}.story-panel h2{font-size:34px;line-height:1.03;letter-spacing:-.045em;margin:10px 0 15px}.story-panel p{color:#91aaa0;font-size:12px;line-height:1.68}.story-stat{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-top:20px}.story-stat div{padding:13px;background:#091713;border:1px solid #19382e;border-radius:13px}.story-stat b{display:block;font-size:20px}.story-stat span{font-size:9px;color:#6f8f84;text-transform:uppercase;letter-spacing:.08em}
+.pipeline{border-radius:25px;padding:24px;border:1px solid var(--line);background:#081512;overflow:hidden;position:relative}.pipeline:before{content:"";position:absolute;left:42px;right:42px;top:65px;height:1px;background:linear-gradient(90deg,#2c5a49,#67e8a5,#68d8df,#2c5a49);opacity:.65}.pipeline-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:9px;position:relative;z-index:2}.pipe-step{background:linear-gradient(160deg,#0d211b,#091713);border:1px solid #1b3b31;border-radius:17px;padding:16px;min-height:152px}.pipe-icon{width:34px;height:34px;border-radius:10px;background:#123328;border:1px solid #295644;display:grid;place-items:center;color:var(--green);font:900 12px ui-monospace,monospace;margin-bottom:24px}.pipe-step b{font-size:13px}.pipe-step p{font-size:10px;line-height:1.5;color:#7f9c90;margin:7px 0 0}.pipe-step small{display:block;margin-top:10px;color:#5f7f73;font:700 9px ui-monospace,monospace;text-transform:uppercase;letter-spacing:.06em}
+.value-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:11px;margin-top:12px}.value-card{position:relative;overflow:hidden;border:1px solid var(--line);border-radius:19px;background:linear-gradient(150deg,#0d211b,#081512);padding:20px}.value-card:before{content:"";position:absolute;width:100px;height:100px;border:1px solid rgba(103,232,165,.08);border-radius:50%;right:-30px;top:-32px}.value-num{font:800 10px ui-monospace,monospace;color:var(--green);letter-spacing:.12em}.value-card h3{font-size:16px;margin:18px 0 8px}.value-card p{font-size:10.5px;line-height:1.55;color:#829f94;margin:0}
+.scenario{position:relative;overflow:hidden}.scenario:before{content:"";position:absolute;left:0;top:0;bottom:0;width:3px;background:#31594b}.scenario[data-name="Stable"]:before{background:var(--green)}.scenario[data-name="Watch"]:before{background:var(--amber)}.scenario[data-name="High Risk"]:before{background:var(--red)}
+.panel,.advanced-card,.scenario,.story-panel,.pipeline,.value-card{box-shadow:0 18px 45px rgba(0,0,0,.18)}
+@media(max-width:1120px){.hero-v2{grid-template-columns:1fr;min-height:auto}.hero-visual{min-height:480px}.split-intro{grid-template-columns:1fr}.pipeline-grid{grid-template-columns:1fr 1fr}.pipeline:before{display:none}.signal-strip{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:760px){.hero-copy-block{padding:30px 23px}.hero-v2 h1{font-size:46px}.hero-visual{min-height:430px}.visual-bottom{grid-template-columns:1fr}.signal-strip{grid-template-columns:1fr 1fr}.pipeline-grid,.value-grid,.story-stat{grid-template-columns:1fr}.hero-proof{gap:12px}.proof-item{min-width:120px}}
+
+/* ===== FG-02 / CHERNOBYL-INSPIRED INDUSTRIAL ART DIRECTION ===== */
+:root{--bg:#050806;--bg2:#090d09;--panel:#0c120e;--panel2:#111812;--panel3:#141e16;--line:#273328;--line2:#40513f;--text:#edf1e7;--muted:#9ca99b;--muted2:#6e7d70;--green:#78dc91;--green2:#4fbf72;--cyan:#79c9ba;--amber:#d8ae52;--red:#dc6d59;--blue:#86a9bd;--shadow:0 26px 85px rgba(0,0,0,.42)}
+body{background:radial-gradient(circle at 8% 0%,rgba(98,122,74,.12),transparent 26%),radial-gradient(circle at 90% 8%,rgba(133,84,40,.10),transparent 25%),linear-gradient(180deg,#050806,#070b08 46%,#040604)}
+body:before{opacity:.58;background-image:linear-gradient(rgba(130,151,122,.026) 1px,transparent 1px),linear-gradient(90deg,rgba(130,151,122,.026) 1px,transparent 1px);background-size:34px 34px}
+body:after{content:"";position:fixed;inset:0;pointer-events:none;z-index:1000;opacity:.035;background-image:repeating-linear-gradient(0deg,rgba(255,255,255,.4) 0 1px,transparent 1px 3px);mix-blend-mode:screen}
+.topbar{background:rgba(5,8,6,.9);border-bottom:1px solid rgba(125,146,116,.22)}
+.logo{border-radius:7px;background:linear-gradient(145deg,#8ce29d,#396f48);box-shadow:0 0 24px rgba(120,220,145,.16)}
+.hero-v2{gap:14px;min-height:620px}
+.hero-copy-block{border-radius:8px;border-color:#344237;background:linear-gradient(155deg,rgba(20,28,21,.98),rgba(7,11,8,.99));box-shadow:inset 0 0 0 1px rgba(255,255,255,.018),0 28px 80px rgba(0,0,0,.48)}
+.hero-copy-block:before{content:"FG-02 / PROCESS INTELLIGENCE";right:24px;top:21px;color:#637566;letter-spacing:.14em}
+.hero-copy-block:after{width:520px;height:520px;right:-230px;bottom:-250px;background:radial-gradient(circle,rgba(120,220,145,.11),transparent 66%)}
+.hero-overline{color:#a8b79f}.hero-overline i{background:#d0a947;box-shadow:0 0 15px rgba(208,169,71,.35)}
+.hero-v2 h1{font-family:"Arial Narrow",Inter,ui-sans-serif,system-ui,sans-serif;text-transform:uppercase;font-weight:900;letter-spacing:-.055em;max-width:760px}.hero-v2 h1 em{color:#8cdf9d;text-shadow:0 0 28px rgba(120,220,145,.1)}
+.hero-lead{color:#aab4a6}.cta{border-radius:4px;text-transform:uppercase;letter-spacing:.05em;background:#111811;border-color:#3d4c3d}.cta.primary{background:#82dc96;border-color:#82dc96;color:#071007}.cta:hover{box-shadow:0 0 0 1px rgba(216,174,82,.22)}
+.hero-proof{border-top-color:#2a352b}.proof-item span{color:#768576}
+.hero-visual{border-radius:8px;border-color:#3d493e;min-height:620px;background:#080b08;box-shadow:0 28px 80px rgba(0,0,0,.5)}
+.hero-photo{filter:saturate(.6) sepia(.08) contrast(1.16) brightness(.62);transform:scale(1.02)}
+.hero-visual:before{content:"";position:absolute;inset:0;z-index:3;pointer-events:none;background:linear-gradient(90deg,rgba(124,78,39,.12),transparent 22%,transparent 76%,rgba(120,76,35,.10)),radial-gradient(circle at 70% 30%,rgba(117,219,145,.08),transparent 26%)}
+.hero-visual:after{z-index:2;background:linear-gradient(0deg,rgba(3,6,4,.92) 0%,rgba(4,8,5,.18) 44%,rgba(2,5,3,.30) 100%),linear-gradient(90deg,rgba(3,6,4,.28),transparent 45%,rgba(3,6,4,.18))}
+.hero-grid-overlay{z-index:3;opacity:.22;background-size:48px 48px;background-image:linear-gradient(rgba(124,162,125,.13) 1px,transparent 1px),linear-gradient(90deg,rgba(124,162,125,.13) 1px,transparent 1px)}
+.visual-top{z-index:7;top:16px;left:16px;right:16px}.visual-code{border-radius:3px;background:rgba(5,8,5,.86);border-color:rgba(174,189,163,.34);color:#c8d0c3}
+.visual-bottom{z-index:7;left:16px;right:16px;bottom:16px}.visual-card{border-radius:4px;background:rgba(5,8,5,.87);border-color:rgba(142,160,135,.30)}
+.visual-card span{color:#8f9b8d}.visual-card p{color:#9ca99a}
+.hazard-edge{position:absolute;z-index:8;left:0;right:0;height:8px;background:repeating-linear-gradient(135deg,#c89b3f 0 16px,#171b16 16px 32px);opacity:.72}.hazard-edge.top{top:0}.hazard-edge.bottom{bottom:0}
+.telemetry-title{position:absolute;z-index:7;left:28px;top:72px;font:800 12px/1 ui-monospace,SFMono-Regular,Menlo,monospace;letter-spacing:.13em;color:#a8b7a7;text-transform:uppercase;text-shadow:0 1px 4px #000}.telemetry-title b{display:block;color:#d6ded2;font-size:23px;letter-spacing:.03em;margin-top:8px}.telemetry-title small{display:block;color:#758473;font-size:9px;margin-top:8px;letter-spacing:.12em}
+.telemetry-pin{position:absolute;z-index:7;min-width:126px;padding:9px 10px 8px;background:rgba(5,9,6,.83);border:1px solid rgba(130,160,126,.45);backdrop-filter:blur(7px);box-shadow:0 10px 25px rgba(0,0,0,.28);font-family:ui-monospace,SFMono-Regular,Menlo,monospace}.telemetry-pin:before{content:"";position:absolute;width:8px;height:8px;border-radius:50%;background:#77dc91;box-shadow:0 0 0 5px rgba(119,220,145,.12),0 0 16px rgba(119,220,145,.65);left:-5px;top:50%;transform:translate(-50%,-50%);animation:pulsePin 1.9s infinite}.telemetry-pin span{display:block;color:#7f8f7e;font-size:8px;letter-spacing:.09em;text-transform:uppercase}.telemetry-pin b{display:block;color:#e2e8dc;font-size:14px;margin-top:3px}.telemetry-pin em{font-style:normal;color:#89db99;font-size:8px;letter-spacing:.08em}.pin-ph{left:14%;top:41%}.pin-air{left:43%;top:30%}.pin-level{right:8%;top:39%}.pin-amina{right:24%;top:58%}.pin-silica{left:28%;top:62%}.pin-risk{right:6%;top:68%}.pin-risk:before{background:#d8ae52;box-shadow:0 0 0 5px rgba(216,174,82,.12),0 0 16px rgba(216,174,82,.55)}
+@keyframes pulsePin{50%{box-shadow:0 0 0 10px rgba(119,220,145,0),0 0 18px rgba(119,220,145,.45)}}
+.ghost-stamp{position:absolute;z-index:5;right:35px;top:124px;transform:rotate(-4deg);font:900 44px/1 ui-monospace,monospace;color:rgba(216,174,82,.055);letter-spacing:.12em;border:3px solid rgba(216,174,82,.05);padding:9px 12px;text-transform:uppercase;pointer-events:none}
+.signal-strip{border-radius:4px;border-color:#303d31;background:#080d09}.signal i{background:#78dc91}.signal b{color:#c9d1c5}.signal span{color:#718072}
+.story-panel,.pipeline,.value-card,.panel,.advanced-card,.scenario{border-radius:6px;background:linear-gradient(150deg,#0d130e,#080c09);border-color:#2c382d}.sectiontag{color:#c7a54d}.scenario:before{width:4px}.chart-box{border-radius:4px;background:#070b08;border-color:#2b372c}.ring:after{background:#080d09}.kpi,.score,.mini-kpi,.insight{border-radius:4px;background:#0a100b;border-color:#273328}.pattern-icon{border-radius:3px}.field input{border-radius:3px}.btn{border-radius:3px}.notice{border-radius:4px}.footer{border-top-color:#29352a}
+@media(max-width:760px){.telemetry-pin{min-width:105px;padding:7px}.telemetry-pin b{font-size:11px}.pin-level,.pin-amina{display:none}.telemetry-title{top:62px;left:20px}.telemetry-title b{font-size:17px}.ghost-stamp{display:none}}
+
+</style>
+</head>
+<body>
+<div class="shell">
+  <div class="topbar"><nav class="nav">
+    <a class="brand" href="#top"><span class="logo"></span><span>FlotaGuard AI</span></a>
+    <div class="navlinks"><a href="#technology">Technology</a><a href="#command">Control room</a><a href="#analytics">Analytics</a><a href="#studio">Simulation</a><a href="#validation">Validation</a></div>
+    <div class="live"><span class="dot"></span><span id="navModelState">AI system ready</span></div>
+  </nav></div>
+
+  <header class="hero-v2" id="top">
+    <section class="hero-copy-block">
+      <div class="hero-overline"><i></i> Industrial predictive intelligence · Competition prototype</div>
+      <h1>Turn process signals into <em>earlier decisions.</em></h1>
+      <div class="hero-lead">FlotaGuard AI forecasts next-hour silica quality and quality-risk probability from flotation process measurements and recent quality history — giving operators a clearer window before the next quality result arrives.</div>
+      <div class="hero-actions"><a class="cta primary" href="#command">Launch control room →</a><a class="cta" href="#technology">See how the AI works</a></div>
+      <div class="hero-proof">
+        <div class="proof-item"><b>+1 hour</b><span>Forecast horizon</span></div>
+        <div class="proof-item"><b>27</b><span>Model inputs</span></div>
+        <div class="proof-item"><b id="heroF1">—</b><span>Alert F1</span></div>
+        <div class="proof-item"><b id="heroR2">—</b><span>Forecast R²</span></div>
+      </div>
+    </section>
+    <aside class="hero-visual" aria-label="Industrial predictive control-room visual">
+      <img class="hero-photo" src="/static/assets/control_room.svg" alt="Vintage industrial control room illustration used as a visual backdrop for flotation telemetry">
+      <div class="hero-grid-overlay"></div>
+      <div class="hazard-edge top"></div><div class="hazard-edge bottom"></div>
+      <div class="visual-top"><span class="visual-code">UNIT FG-02 // FLOTATION INTELLIGENCE</span><span class="live"><span class="dot"></span><span id="modelState">Model online</span></span></div>
+      <div class="telemetry-title">Process telemetry / archive console<b>LIVE SIGNAL MAP</b><small>Current process channels · AI forecast layer</small></div>
+      <div class="ghost-stamp">Predictive</div>
+      <div class="telemetry-pin pin-ph"><span>Ore pulp pH</span><b id="telemetryPh">—</b><em>LIVE CHANNEL</em></div>
+      <div class="telemetry-pin pin-air"><span>Column 01 air</span><b id="telemetryAir">—</b><em>LIVE CHANNEL</em></div>
+      <div class="telemetry-pin pin-level"><span>Column 01 level</span><b id="telemetryLevel">—</b><em>LIVE CHANNEL</em></div>
+      <div class="telemetry-pin pin-amina"><span>Amina flow</span><b id="telemetryAmina">—</b><em>LIVE CHANNEL</em></div>
+      <div class="telemetry-pin pin-silica"><span>Latest silica</span><b id="telemetrySilica">—</b><em>QUALITY HISTORY</em></div>
+      <div class="telemetry-pin pin-risk"><span>Next-hour risk</span><b id="telemetryRisk">—</b><em>AI OUTPUT</em></div>
+      <div class="visual-bottom">
+        <div class="visual-card"><span>AI decision window</span><b>Quality risk before the next result</b><p>Regression + alert classification + operating-pattern context in one operator-facing view.</p></div>
+        <div class="visual-card"><span>Validation evidence</span><b id="heroHours">— hours</b><p>Chronological future holdout windows used for evaluation.</p></div>
+      </div>
+    </aside>
+  </header>
+
+  <div class="signal-strip" aria-label="system status">
+    <div class="signal"><i></i><div><span>Inference</span><b>Saved models online</b></div></div>
+    <div class="signal"><i></i><div><span>Process channels</span><b>21 current measurements</b></div></div>
+    <div class="signal"><i></i><div><span>Quality history</span><b>6 hourly silica values</b></div></div>
+    <div class="signal"><i></i><div><span>Forecast engine</span><b>XGBoost + RF + K-Means</b></div></div>
+    <div class="signal"><i></i><div><span>Control mode</span><b>Human-in-the-loop</b></div></div>
+  </div>
+
+  <section class="website-section" id="technology">
+    <div class="split-intro">
+      <article class="story-panel">
+        <div class="sectiontag">The operational problem</div>
+        <h2>Quality intelligence arrives after the process has already moved.</h2>
+        <p>Flotation conditions change continuously. FlotaGuard AI is designed as a predictive decision-support layer: it combines the current process state with recent silica history, forecasts the next quality window, and highlights when operator attention may be needed.</p>
+        <div class="story-stat"><div><b>1 hour</b><span>Prediction horizon</span></div><div><b>3 AI views</b><span>Forecast · alert · pattern</span></div></div>
+      </article>
+      <article class="pipeline">
+        <div class="sectiontag">AI intelligence pipeline</div>
+        <div class="pipeline-grid">
+          <div class="pipe-step"><div class="pipe-icon">01</div><b>Sense</b><p>Current-hour flotation measurements plus the latest six hourly silica results.</p><small>27 model inputs</small></div>
+          <div class="pipe-step"><div class="pipe-icon">02</div><b>Forecast</b><p>XGBoost estimates the expected silica percentage in the next quality window.</p><small>Regression model</small></div>
+          <div class="pipe-step"><div class="pipe-icon">03</div><b>Assess risk</b><p>A separate Random Forest estimates the probability of exceeding the prototype threshold.</p><small>Early warning model</small></div>
+          <div class="pipe-step"><div class="pipe-icon">04</div><b>Support action</b><p>K-Means adds process-pattern context while the human operator keeps decision authority.</p><small>Decision support</small></div>
+        </div>
+      </article>
+    </div>
+    <div class="value-grid">
+      <article class="value-card"><div class="value-num">01 // EARLIER</div><h3>Predictive, not just descriptive</h3><p>The dashboard does not stop at showing the current process. It produces a one-hour-ahead quality forecast and a separate risk probability.</p></article>
+      <article class="value-card"><div class="value-num">02 // EXPLAINABLE</div><h3>Operator-visible model evidence</h3><p>Feature-importance, process-pattern context, historical trajectory and held-out outcomes make the prototype easier to interrogate during a demo.</p></article>
+      <article class="value-card"><div class="value-num">03 // RESPONSIBLE</div><h3>Human-in-the-loop by design</h3><p>FlotaGuard AI is framed as decision support, not autonomous plant control. Plant-specific validation remains necessary before production deployment.</p></article>
+    </div>
+  </section>
+
+  <div class="sectionhead"><div><div class="sectiontag">Demo scenarios</div><h2>Choose an operating condition</h2><p>Each scenario comes from the held-out future test period.</p></div></div>
+  <section class="scenarios" id="scenarioCards">
+    <button class="scenario" data-name="Stable" onclick="loadScenario('Stable')"><div class="scenario-top"><span class="scenario-name">Stable operation</span><span class="scenario-badge">LOW RISK</span></div><p>Use a low-risk historical condition to establish the baseline forecast.</p></button>
+    <button class="scenario" data-name="Watch" onclick="loadScenario('Watch')"><div class="scenario-top"><span class="scenario-name">Watch condition</span><span class="scenario-badge">MONITOR</span></div><p>Demonstrates a borderline quality condition that deserves operator attention.</p></button>
+    <button class="scenario" data-name="High Risk" onclick="loadScenario('High Risk')"><div class="scenario-top"><span class="scenario-name">High-risk condition</span><span class="scenario-badge">EARLY WARNING</span></div><p>Shows how the system escalates when the next quality window is likely to exceed the prototype threshold.</p></button>
+  </section>
+
+  <div class="sectionhead" id="command"><div><div class="sectiontag">Command center</div><h2>One-hour quality forecast</h2><p>Live inference from the selected or edited process condition.</p></div><span class="panel-chip" id="scenarioStamp">Held-out scenario</span></div>
+  <main class="dashboard">
+    <section>
+      <div class="panel">
+        <div class="panel-title"><div><h3>Forecast overview</h3><p>Regression and alert classification are intentionally separated so the operator sees both expected quality and exceedance risk.</p></div><span class="panel-chip">AI inference</span></div>
+        <div class="kpis">
+          <div class="kpi"><div class="lab">Predicted next-hour silica</div><div class="val" id="silicaValue">—</div><div class="sub" id="thresholdNote">Prototype quality threshold: —</div></div>
+          <div class="kpi"><div class="lab">Risk triage</div><div class="val" id="riskValue">—</div><div class="sub" id="alertStatus">Awaiting forecast</div></div>
+          <div class="kpi"><div class="lab">Process pattern</div><div class="val" style="font-size:18px;margin-top:16px" id="patternValue">—</div><div class="sub" id="patternNote">Data-driven operating cluster</div></div>
+        </div>
+        <div class="chart-panel" id="analytics">
+          <div class="chart-title-row"><div><strong style="font-size:13px">Quality trajectory</strong><div style="font-size:10px;color:var(--muted);margin-top:3px">Recent six-hour history with the AI next-hour forecast</div></div><div class="legend"><span>Historical</span><span class="lg-forecast">Forecast</span><span class="lg-threshold">Threshold</span></div></div>
+          <div class="chart-box"><svg id="qualityChart" class="chart-svg" viewBox="0 0 860 265" role="img" aria-label="Silica quality trend chart"></svg></div>
+        </div>
+        <div class="insightbar"><div class="insight"><span>Held-out historical outcome</span><b id="historicalOutcome">—</b><small id="historicalTime">Select a demo scenario</small></div><div class="insight"><span>Forecast gap vs threshold</span><b id="thresholdGap">—</b><small>Positive means forecast is above the prototype quality threshold.</small></div></div>
+        <div class="demo-outcome" id="demoOutcome"></div>
+      </div>
+    </section>
+
+    <aside class="side-stack">
+      <section class="panel">
+        <div class="panel-title"><div><h3>Alert probability</h3><p>Probability that next-hour silica exceeds the configurable prototype threshold.</p></div></div>
+        <div class="risk-layout"><div class="ring" id="riskRing"><div class="inside"><b id="probValue">—</b><span>risk probability</span></div></div><div class="risk-copy"><h4 id="riskHeadline">Awaiting forecast</h4><p id="riskExplanation">Choose a scenario or edit the inputs, then run the model.</p><div class="meter"><i id="probBar"></i></div></div></div>
+      </section>
+      <section class="panel">
+        <div class="panel-title"><div><h3>Operating pattern map</h3><p>Unsupervised K-Means context. Labels are descriptive, not safety classes.</p></div></div>
+        <div class="pattern-head"><div class="pattern-icon">K</div><div><b id="patternHeadline">—</b><span id="patternSub">Waiting for inference</span></div></div>
+        <div id="clusterBars" class="cluster-list"></div>
+      </section>
+      <section class="panel"><div id="modelNote" class="notice">Decision-support prototype only; operator review is required.</div></section>
+    </aside>
+  </main>
+
+  <div class="sectionhead"><div><div class="sectiontag">Explainability</div><h2>What influences the models?</h2><p>Global feature importance from the saved models. These bars are not causal explanations.</p></div></div>
+  <section class="studio">
+    <div class="panel"><div class="panel-title"><div><h3>Forecast model drivers</h3><p>Top global XGBoost importance values for next-hour silica regression.</p></div></div><div id="regDrivers" class="drivers"></div></div>
+    <div class="panel"><div class="panel-title"><div><h3>Alert model drivers</h3><p>Top global importance values used by the early-warning classifier.</p></div></div><div id="alertDrivers" class="drivers"></div></div>
+  </section>
+
+  <div class="sectionhead" id="validation"><div><div class="sectiontag">Validation evidence</div><h2>Strict future holdout performance</h2><p>Training uses earlier hours; evaluation uses a later unseen chronological period.</p></div></div>
+  <section class="panel"><div class="validation-grid">
+    <div class="score"><span>Regression R²</span><b id="scoreR2">—</b><small>next-hour silica</small></div>
+    <div class="score"><span>Regression MAE</span><b id="scoreMae">—</b><small>percentage points</small></div>
+    <div class="score"><span>Alert precision</span><b id="scorePrec">—</b><small>held-out alerts</small></div>
+    <div class="score"><span>Alert recall / F1</span><b id="scoreRecall">—</b><small id="scoreF1">—</small></div>
+  </div><div class="notice" style="margin-top:12px" id="validationText"></div></section>
+
+  <div class="sectionhead" id="studio"><div><div class="sectiontag">Simulation studio</div><h2>Inspect or edit the process condition</h2><p>Advanced controls are available for the demo without cluttering the command center.</p></div></div>
+  <section class="studio">
+    <div class="advanced-card"><h3>Recent quality history</h3><p>Latest silica result plus the previous five hourly silica values.</p><div id="historyFields" class="history-grid"></div></div>
+    <div class="advanced-card"><h3>Current process measurements</h3><p>Current-hour mean process values used by the forecasting pipeline.</p><div id="processFields"></div></div>
+  </section>
+  <div class="panel" style="margin-top:14px"><div class="actionbar"><span class="status" id="formStatus">Model ready</span><button class="btn primary" onclick="predictNow()">Run AI forecast →</button></div></div>
+
+  <footer class="footer"><span>FlotaGuard AI · Industrial AI decision-support prototype</span><span>Industrial control-room artwork packaged locally for offline demo · Plant-specific calibration required before production use</span></footer>
+</div>
+<script>
+let META=null, activeScenario=null, LAST=null;
+const historyNames=['silica_current','silica_lag_1h','silica_lag_2h','silica_lag_3h','silica_lag_4h','silica_lag_5h'];
+const svgNS='http://www.w3.org/2000/svg';
+function esc(s){return s.replace(/[^a-zA-Z0-9]/g,'_')}
+function fmt(v,d=2){return Number(v).toFixed(d)}
+function niceName(f){return f.replace('silica_current','Latest silica').replace('silica_lag_1h','Silica −1h').replace('silica_lag_2h','Silica −2h').replace('silica_lag_3h','Silica −3h').replace('silica_lag_4h','Silica −4h').replace('silica_lag_5h','Silica −5h').replace('Flotation Column ','Col ')}
+async function init(){
+  try{
+    const r=await fetch('/api/meta'); if(!r.ok)throw new Error('Metadata unavailable'); META=await r.json();
+    document.getElementById('heroF1').textContent=fmt(META.metrics.alert_classification.f1_alert,3);
+    document.getElementById('heroR2').textContent=fmt(META.metrics.regression.r2,3);
+    document.getElementById('heroHours').textContent=META.metrics.test_hours.toLocaleString();
+    buildInputs();renderDrivers();renderValidation();renderClusterBars();loadScenario('Stable');
+  }catch(e){document.getElementById('modelState').textContent='Model unavailable';document.getElementById('modelNote').className='notice err';document.getElementById('modelNote').textContent=e.message}
+}
+function fieldHtml(f){const m=META.feature_meta[f];const span=Math.max(m.max-m.min,.001);let step=span/200;if(step>10)step=1;else if(step>1)step=.1;else if(step>.1)step=.01;else step=.001;return `<div class="field"><label>${m.label}</label><input id="f_${esc(f)}" type="number" step="${step}" value="${m.default}" oninput="markEdited()"></div>`}
+function buildInputs(){document.getElementById('historyFields').innerHTML=historyNames.map(fieldHtml).join('');const root=document.getElementById('processFields');root.innerHTML='';Object.entries(META.groups).forEach(([g,fs])=>root.insertAdjacentHTML('beforeend',`<div class="group-title">${g}</div><div class="fields">${fs.map(fieldHtml).join('')}</div>`))}
+function setValue(f,v){const el=document.getElementById('f_'+esc(f));if(el)el.value=Number(v).toFixed(4)}
+function getInputs(){const x={};META.model_features.forEach(f=>x[f]=Number(document.getElementById('f_'+esc(f)).value));return x}
+function markEdited(){activeScenario=null;document.querySelectorAll('.scenario').forEach(x=>x.classList.remove('active'));document.getElementById('formStatus').textContent='Inputs edited · run forecast to update';document.getElementById('scenarioStamp').textContent='Custom simulation'}
+function loadScenario(name){
+  activeScenario=name;const s=META.scenarios[name];Object.entries(s.inputs).forEach(([f,v])=>setValue(f,v));document.querySelectorAll('.scenario').forEach(x=>x.classList.toggle('active',x.dataset.name===name));
+  document.getElementById('formStatus').textContent=`Loaded held-out ${name} scenario`;document.getElementById('scenarioStamp').textContent=`${name} · ${s.timestamp}`;
+  document.getElementById('historicalOutcome').textContent=fmt(s.historical_next_hour_silica,3)+'% silica';document.getElementById('historicalTime').textContent='Historical next-hour result · '+s.timestamp;
+  document.getElementById('demoOutcome').innerHTML=`Held-out scenario · historical next-hour outcome <b>${fmt(s.historical_next_hour_silica,3)}%</b> · saved model validation prediction <b>${fmt(s.model_prediction_on_holdout,3)}%</b>.`;
+  updateHeroTelemetry(getInputs());
+  predictNow();
+}
+async function predictNow(){
+  const st=document.getElementById('formStatus');st.textContent='Running regression + classifier + process clustering…';
+  try{const r=await fetch('/api/predict',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({inputs:getInputs()})});const d=await r.json();if(!r.ok)throw new Error(d.error||'Prediction failed');LAST=d;renderPrediction(d);st.textContent='Forecast updated · real saved-model inference'}catch(e){st.textContent='Forecast failed';const n=document.getElementById('modelNote');n.className='notice err';n.textContent=e.message}
+}
+function updateHeroTelemetry(inputs,d=null){
+  const put=(id,text)=>{const el=document.getElementById(id);if(el)el.textContent=text};
+  put('telemetryPh',fmt(inputs['Ore Pulp pH'],2)+' pH');
+  put('telemetryAir',fmt(inputs['Flotation Column 01 Air Flow'],1));
+  put('telemetryLevel',fmt(inputs['Flotation Column 01 Level'],1));
+  put('telemetryAmina',fmt(inputs['Amina Flow'],1));
+  put('telemetrySilica',fmt(inputs.silica_current,2)+'%');
+  put('telemetryRisk',d?fmt(d.alert_probability*100,1)+'%':'RUN AI');
+}
+function renderPrediction(d){
+  const silica=d.predicted_next_hour_silica,thr=d.prototype_quality_threshold,p=d.alert_probability*100;
+  updateHeroTelemetry(getInputs(),d);
+  document.getElementById('silicaValue').textContent=fmt(silica,3)+'%';document.getElementById('thresholdNote').textContent=`Prototype threshold: ${fmt(thr,2)}%`;
+  const rv=document.getElementById('riskValue');rv.textContent=d.triage;rv.className='val '+(d.triage==='High risk'?'risk-high':d.triage==='Watch'?'risk-watch':'risk-stable');document.getElementById('alertStatus').textContent=`Classifier: ${d.alert_status}`;
+  document.getElementById('probValue').textContent=fmt(p,1)+'%';document.getElementById('probBar').style.width=Math.min(100,p)+'%';
+  const ring=document.getElementById('riskRing');ring.style.setProperty('--p',Math.min(100,p));ring.style.setProperty('--ring',d.triage==='High risk'?'var(--red)':d.triage==='Watch'?'var(--amber)':'var(--green)');
+  document.getElementById('riskHeadline').textContent=d.triage==='High risk'?'Early warning triggered':d.triage==='Watch'?'Monitor this condition':'Condition appears stable';
+  document.getElementById('riskExplanation').textContent=d.triage==='High risk'?'The classifier sees a high probability of exceeding the prototype quality threshold in the next hour.':d.triage==='Watch'?'The forecast is near the operator watch region; review the process context before the next quality window.':'The model currently sees a low exceedance probability for the next quality window.';
+  document.getElementById('patternValue').textContent=d.process_pattern.label;document.getElementById('patternNote').textContent=`Training cluster mean silica: ${fmt(d.process_pattern.training_mean_silica,2)}%`;document.getElementById('patternHeadline').textContent=d.process_pattern.label;document.getElementById('patternSub').textContent=`Cluster ${d.process_pattern.cluster_id} · mean ${fmt(d.process_pattern.training_mean_silica,2)}% silica`;
+  document.getElementById('thresholdGap').textContent=(silica-thr>=0?'+':'')+fmt(silica-thr,3)+' pp';
+  const n=document.getElementById('modelNote');if(d.out_of_distribution_warnings.length){n.className='notice warn';n.textContent=`Caution: ${d.out_of_distribution_warnings.length} input(s) are outside the central 98% of the training range. Treat this forecast carefully.`}else{n.className='notice';n.textContent='Inputs are within the central training ranges. Decision-support prototype only; operator review is required.'}
+  renderQualityChart(getInputs(),silica,thr);renderClusterBars(d.process_pattern.cluster_id);
+}
+function renderDrivers(){renderDriverSet('regDrivers',META.feature_importance.regression.slice(0,9));renderDriverSet('alertDrivers',META.feature_importance.alert.slice(0,9))}
+function renderDriverSet(id,arr){const max=Math.max(...arr.map(x=>x.importance));document.getElementById(id).innerHTML=arr.map(x=>`<div class="driver"><strong title="${x.feature}">${niceName(x.feature)}</strong><span class="track"><span class="fill" style="display:block;width:${100*x.importance/max}%"></span></span><span>${fmt(x.importance*100,1)}%</span></div>`).join('')}
+function renderValidation(){const m=META.metrics;document.getElementById('scoreR2').textContent=fmt(m.regression.r2,3);document.getElementById('scoreMae').textContent=fmt(m.regression.mae_percentage_points,3);document.getElementById('scorePrec').textContent=fmt(m.alert_classification.precision_alert,3);document.getElementById('scoreRecall').textContent=fmt(m.alert_classification.recall_alert,3);document.getElementById('scoreF1').textContent='F1 '+fmt(m.alert_classification.f1_alert,3);document.getElementById('validationText').innerHTML=`<b>Strict future holdout:</b> ${m.test_hours} hourly windows from ${m.test_period[0]} to ${m.test_period[1]}. Regression RMSE: <b>${fmt(m.regression.rmse_percentage_points,3)} percentage points</b>. The 3.5% quality threshold is a configurable prototype setting, not claimed as a universal industry standard.`}
+function renderClusterBars(activeId=null){if(!META)return;const rows=Object.entries(META.cluster_profiles);const max=Math.max(...rows.map(([,v])=>v.mean_silica));document.getElementById('clusterBars').innerHTML=rows.sort((a,b)=>a[1].mean_silica-b[1].mean_silica).map(([id,v])=>`<div class="cluster-row ${String(activeId)===String(id)?'active':''}"><span>${v.label}</span><span class="track"><span class="fill" style="display:block;width:${100*v.mean_silica/max}%"></span></span><span>${fmt(v.mean_silica,2)}%</span></div>`).join('')}
+function renderQualityChart(inputs,forecast,threshold){
+  const svg=document.getElementById('qualityChart');while(svg.firstChild)svg.removeChild(svg.firstChild);
+  const W=860,H=265,pad={l:50,r:28,t:20,b:38};const hist=[inputs.silica_lag_5h,inputs.silica_lag_4h,inputs.silica_lag_3h,inputs.silica_lag_2h,inputs.silica_lag_1h,inputs.silica_current];const vals=[...hist,forecast,threshold];let min=Math.min(...vals),max=Math.max(...vals);const span=Math.max(max-min,.7);min=Math.max(0,min-span*.22);max=max+span*.22;const x=i=>pad.l+i*(W-pad.l-pad.r)/6;const y=v=>pad.t+(max-v)*(H-pad.t-pad.b)/(max-min);
+  function el(tag,attrs,text){const n=document.createElementNS(svgNS,tag);Object.entries(attrs||{}).forEach(([k,v])=>n.setAttribute(k,v));if(text!==undefined)n.textContent=text;svg.appendChild(n);return n}
+  for(let i=0;i<5;i++){const v=min+(max-min)*i/4;const yy=y(v);el('line',{x1:pad.l,y1:yy,x2:W-pad.r,y2:yy,stroke:'#17362d','stroke-width':'1'});el('text',{x:pad.l-9,y:yy+4,'text-anchor':'end',fill:'#6f8f84','font-size':'9'},fmt(v,1)+'%')}
+  const labels=['−5h','−4h','−3h','−2h','−1h','Now','+1h'];labels.forEach((lab,i)=>el('text',{x:x(i),y:H-12,'text-anchor':'middle',fill:'#78988d','font-size':'9'},lab));
+  el('line',{x1:pad.l,y1:y(threshold),x2:W-pad.r,y2:y(threshold),stroke:'#f4c96b','stroke-width':'1.5','stroke-dasharray':'6 5'});el('text',{x:W-pad.r-2,y:y(threshold)-6,'text-anchor':'end',fill:'#f4c96b','font-size':'9'},'Quality threshold '+fmt(threshold,2)+'%');
+  const histPts=hist.map((v,i)=>`${x(i)},${y(v)}`).join(' ');el('polyline',{points:histPts,fill:'none',stroke:'#67e8a5','stroke-width':'3','stroke-linecap':'round','stroke-linejoin':'round'});hist.forEach((v,i)=>{el('circle',{cx:x(i),cy:y(v),r:'4',fill:'#081512',stroke:'#67e8a5','stroke-width':'2'});});
+  el('line',{x1:x(5),y1:y(hist[5]),x2:x(6),y2:y(forecast),stroke:'#68d8df','stroke-width':'3','stroke-dasharray':'7 5','stroke-linecap':'round'});el('circle',{cx:x(6),cy:y(forecast),r:'7',fill:'#68d8df',stroke:'#d7fbff','stroke-width':'2'});el('text',{x:x(6)-8,y:y(forecast)-13,'text-anchor':'end',fill:'#bfeff3','font-size':'10','font-weight':'700'},fmt(forecast,2)+'% forecast');
+}
+window.addEventListener('DOMContentLoaded',init);
+</script>
+</body>
+</html>

@@ -1,0 +1,33 @@
+{
+  "task": "One-hour-ahead silica quality forecasting and alert detection",
+  "validation": "Strict chronological 80/20 holdout by hourly timestamp",
+  "train_period": [
+    "2017-03-10 06:00:00",
+    "2017-08-06 19:00:00"
+  ],
+  "test_period": [
+    "2017-08-06 20:00:00",
+    "2017-09-09 22:00:00"
+  ],
+  "train_hours": 3272,
+  "test_hours": 819,
+  "regression": {
+    "r2": 0.5904,
+    "mae_percentage_points": 0.5444,
+    "rmse_percentage_points": 0.7325
+  },
+  "alert_classification": {
+    "prototype_silica_threshold_pct": 3.5,
+    "probability_threshold": 0.42,
+    "accuracy": 0.9048,
+    "precision_alert": 0.7417,
+    "recall_alert": 0.7417,
+    "f1_alert": 0.7417,
+    "test_alert_rate": 0.1844
+  },
+  "important_limitations": [
+    "This is a historical-data prototype, not a production control system.",
+    "The 3.5% silica threshold is a configurable prototype setting, not claimed as a universal industry standard.",
+    "A real deployment requires plant-specific recalibration, live sensor integration, monitoring for process drift, and operator validation."
+  ]
+}

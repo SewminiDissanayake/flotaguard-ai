@@ -1,0 +1,91 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 980">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#08110d"/><stop offset=".45" stop-color="#101a14"/><stop offset="1" stop-color="#050907"/></linearGradient>
+    <linearGradient id="metal" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#2d3830"/><stop offset=".55" stop-color="#202a23"/><stop offset="1" stop-color="#111813"/></linearGradient>
+    <linearGradient id="desk" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#323a31"/><stop offset="1" stop-color="#171d19"/></linearGradient>
+    <radialGradient id="screen"><stop stop-color="#74ffb2" stop-opacity=".55"/><stop offset=".42" stop-color="#2e8f61" stop-opacity=".28"/><stop offset="1" stop-color="#0d2418" stop-opacity=".1"/></radialGradient>
+    <linearGradient id="rust" x1="0" y1="0" x2="1" y2="0"><stop stop-color="#83522e" stop-opacity=".05"/><stop offset=".5" stop-color="#b36a34" stop-opacity=".22"/><stop offset="1" stop-color="#552e18" stop-opacity=".06"/></linearGradient>
+    <filter id="grain" x="-20%" y="-20%" width="140%" height="140%"><feTurbulence baseFrequency=".75" numOctaves="2" seed="11" type="fractalNoise"/><feColorMatrix type="saturate" values="0"/><feComponentTransfer><feFuncA type="table" tableValues="0 .09"/></feComponentTransfer></filter>
+    <filter id="glow"><feGaussianBlur stdDeviation="8" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+    <filter id="soft"><feGaussianBlur stdDeviation="24"/></filter>
+    <pattern id="stripe" width="34" height="34" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><rect width="17" height="34" fill="#d09b30"/><rect x="17" width="17" height="34" fill="#1b211c"/></pattern>
+  </defs>
+
+  <rect width="1600" height="980" fill="url(#bg)"/>
+  <ellipse cx="1230" cy="120" rx="440" ry="170" fill="#315a42" opacity=".11" filter="url(#soft)"/>
+  <ellipse cx="260" cy="770" rx="460" ry="180" fill="#5b3a1e" opacity=".12" filter="url(#soft)"/>
+
+  <!-- ceiling / structure -->
+  <path d="M0 0h1600v120H0z" fill="#0e1511"/><path d="M0 118h1600" stroke="#3b493f" stroke-width="6" opacity=".65"/>
+  <g stroke="#4b5a4f" stroke-width="8" opacity=".28"><path d="M120 0v120M420 0v120M790 0v120M1160 0v120M1470 0v120"/></g>
+  <g fill="#d7dbc7" opacity=".62"><rect x="160" y="28" width="230" height="28" rx="6"/><rect x="690" y="28" width="230" height="28" rx="6"/><rect x="1210" y="28" width="230" height="28" rx="6"/></g>
+
+  <!-- rear control wall -->
+  <rect x="55" y="150" width="1490" height="470" rx="18" fill="url(#metal)" stroke="#435149" stroke-width="3"/>
+  <rect x="74" y="170" width="1452" height="40" rx="8" fill="#151d18"/>
+  <text x="104" y="197" fill="#93a99c" font-size="18" font-family="monospace" letter-spacing="5">FLOTATION CONTROL / ARCHIVE CONSOLE 07</text>
+
+  <!-- large instrument bays -->
+  <g fill="#273129" stroke="#59665d" stroke-width="2">
+    <rect x="88" y="235" width="430" height="330" rx="10"/><rect x="535" y="235" width="430" height="330" rx="10"/><rect x="982" y="235" width="530" height="330" rx="10"/>
+  </g>
+
+  <!-- gauges -->
+  <g stroke="#b8c5bb" stroke-width="3" fill="#111712">
+    <circle cx="150" cy="300" r="38"/><circle cx="245" cy="300" r="38"/><circle cx="340" cy="300" r="38"/><circle cx="435" cy="300" r="38"/>
+    <circle cx="600" cy="300" r="38"/><circle cx="695" cy="300" r="38"/><circle cx="790" cy="300" r="38"/><circle cx="885" cy="300" r="38"/>
+    <circle cx="1050" cy="300" r="38"/><circle cx="1145" cy="300" r="38"/><circle cx="1240" cy="300" r="38"/><circle cx="1335" cy="300" r="38"/><circle cx="1430" cy="300" r="38"/>
+  </g>
+  <g stroke="#6df2a5" stroke-width="3" stroke-linecap="round" opacity=".85">
+    <path d="M150 300l17-19M245 300l-4-25M340 300l21-12M435 300l12-22M600 300l-9-26M695 300l22-11M790 300l8-24M885 300l-18-18M1050 300l17-19M1145 300l5-25M1240 300l21-12M1335 300l-10-22M1430 300l14-20"/>
+  </g>
+  <g fill="#8d9f93" font-size="9" font-family="monospace" text-anchor="middle">
+    <text x="150" y="353">AIR 01</text><text x="245" y="353">AIR 02</text><text x="340" y="353">AIR 03</text><text x="435" y="353">PULP</text>
+    <text x="600" y="353">PH</text><text x="695" y="353">DENS</text><text x="790" y="353">AMINA</text><text x="885" y="353">STARCH</text>
+    <text x="1050" y="353">LVL 01</text><text x="1145" y="353">LVL 02</text><text x="1240" y="353">LVL 03</text><text x="1335" y="353">LVL 04</text><text x="1430" y="353">SILICA</text>
+  </g>
+
+  <!-- CRT monitors -->
+  <g>
+    <rect x="125" y="390" width="160" height="120" rx="10" fill="#0b0f0c" stroke="#68766b" stroke-width="3"/><rect x="137" y="402" width="136" height="92" rx="5" fill="url(#screen)"/>
+    <rect x="315" y="390" width="160" height="120" rx="10" fill="#0b0f0c" stroke="#68766b" stroke-width="3"/><rect x="327" y="402" width="136" height="92" rx="5" fill="url(#screen)"/>
+    <rect x="570" y="390" width="160" height="120" rx="10" fill="#0b0f0c" stroke="#68766b" stroke-width="3"/><rect x="582" y="402" width="136" height="92" rx="5" fill="url(#screen)"/>
+    <rect x="760" y="390" width="160" height="120" rx="10" fill="#0b0f0c" stroke="#68766b" stroke-width="3"/><rect x="772" y="402" width="136" height="92" rx="5" fill="url(#screen)"/>
+  </g>
+  <g fill="none" stroke="#70ffae" stroke-width="2" opacity=".75">
+    <polyline points="145,470 165,455 188,462 210,430 232,448 260,418"/><polyline points="335,450 355,438 380,455 400,424 428,440 452,418"/>
+    <polyline points="590,470 612,460 637,432 660,449 684,422 710,438"/><polyline points="780,452 802,440 825,447 848,418 876,432 905,414"/>
+  </g>
+
+  <!-- indicator columns -->
+  <g>
+    <g transform="translate(1020 397)"><rect width="450" height="114" rx="9" fill="#1b241d" stroke="#59665d"/><g transform="translate(22 22)">
+      <circle cx="0" cy="0" r="7" fill="#65ef9e" filter="url(#glow)"/><circle cx="55" cy="0" r="7" fill="#65ef9e"/><circle cx="110" cy="0" r="7" fill="#d9ad43"/><circle cx="165" cy="0" r="7" fill="#65ef9e"/><circle cx="220" cy="0" r="7" fill="#65ef9e"/><circle cx="275" cy="0" r="7" fill="#d26a4d"/><circle cx="330" cy="0" r="7" fill="#65ef9e"/>
+      <g fill="#819387" font-family="monospace" font-size="9"><text x="-10" y="29">P-01</text><text x="45" y="29">P-02</text><text x="100" y="29">W-03</text><text x="155" y="29">P-04</text><text x="210" y="29">P-05</text><text x="265" y="29">AL-6</text><text x="320" y="29">P-07</text></g>
+      <g stroke="#6f7f74" stroke-width="2"><path d="M0 50h340"/><path d="M0 62h340"/></g>
+    </g></g>
+  </g>
+
+  <!-- rust / age -->
+  <rect x="55" y="150" width="1490" height="470" rx="18" fill="url(#rust)" opacity=".75"/>
+  <path d="M1040 152c28 75-12 118 18 186s-8 145 18 250" stroke="#8c4a28" stroke-width="8" opacity=".16" fill="none"/><path d="M390 155c-18 72 25 130-8 205s15 145-2 245" stroke="#9a542b" stroke-width="6" opacity=".12" fill="none"/>
+
+  <!-- foreground operator console -->
+  <path d="M100 625h1390l80 255H30z" fill="url(#desk)" stroke="#465249" stroke-width="4"/>
+  <path d="M110 640h1370" stroke="#6b786f" stroke-width="3" opacity=".55"/>
+  <g fill="#111814" stroke="#59675d" stroke-width="2">
+    <rect x="150" y="680" width="290" height="135" rx="12"/><rect x="475" y="680" width="290" height="135" rx="12"/><rect x="800" y="680" width="290" height="135" rx="12"/><rect x="1125" y="680" width="290" height="135" rx="12"/>
+  </g>
+  <g fill="#6df2a5"><circle cx="190" cy="720" r="8"/><circle cx="245" cy="720" r="8"/><circle cx="300" cy="720" r="8"/><circle cx="515" cy="720" r="8"/><circle cx="570" cy="720" r="8"/></g>
+  <g fill="#d6a84a"><circle cx="355" cy="720" r="8"/><circle cx="625" cy="720" r="8"/><circle cx="840" cy="720" r="8"/></g>
+  <g stroke="#77857c" stroke-width="8" stroke-linecap="round"><path d="M180 770h210M505 770h210M830 770h210M1155 770h210"/></g>
+  <g stroke="#d7e2dc" stroke-width="5" opacity=".7"><path d="M205 775v-32M250 775v-18M295 775v-40M340 775v-25M530 775v-42M575 775v-20M620 775v-33M665 775v-16M855 775v-23M900 775v-38M945 775v-17M990 775v-31M1180 775v-35M1225 775v-21M1270 775v-42M1315 775v-26"/></g>
+
+  <!-- warning tape -->
+  <rect x="0" y="918" width="1600" height="62" fill="url(#stripe)" opacity=".35"/>
+  <rect x="0" y="915" width="1600" height="3" fill="#b9852c" opacity=".6"/>
+
+  <!-- scanline and grain -->
+  <g opacity=".12" stroke="#8bc5a4"><path d="M0 80h1600M0 160h1600M0 240h1600M0 320h1600M0 400h1600M0 480h1600M0 560h1600M0 640h1600M0 720h1600M0 800h1600M0 880h1600"/></g>
+  <rect width="1600" height="980" filter="url(#grain)" opacity=".5"/>
+</svg>
